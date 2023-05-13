@@ -11,14 +11,14 @@ body {
     border: 2px solid darkblue;
     margin: 20px;
     padding: 20px;
-    width: 60%;
+    width: 85%;
 }
 
 .nav_vertical {
     border: 2px solid darkblue;
     margin: 20px;
     padding: 20px;
-    width: 25%; 
+    width: 5%; 
    /* display: block; */
 }
 
