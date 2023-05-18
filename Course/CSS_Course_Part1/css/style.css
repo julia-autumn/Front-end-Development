@@ -2,19 +2,22 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     background-color:antiquewhite;
+    box-sizing: 100%;
 }
  
 .column {
     float: left;
+   /* box-sizing: 100%; */
 }
 .main {
     border: 2px solid darkblue;
     margin: 20px;
     padding: 20px;
-    width: 85%;
+    width: 82%;
 }
 
 .nav_vertical {
+    background-color: aqua;
     border: 2px solid darkblue;
     margin: 20px;
     padding: 20px;
