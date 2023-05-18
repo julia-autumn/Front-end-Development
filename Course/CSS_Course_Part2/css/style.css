@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+/* || RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* || GENERAL STYLES */
+body {
+   font: 1rem "Arial";
+  /*font: 15px "Nutito"; */
+  min-height: 100vh;
+ 
+  background-color: antiquewhite ;
+  background-image: radial-gradient(whitesmoke, antiquewhite);
+  display: flex;
+  flex-direction: column;
+}
+
+header, nav, div, main, footer {
+  display: grid;
+  place-content: center;
+  grid-template-columns: 100%;
+  padding: 20px;
+  text-align: left;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+main{
+    place-content: start;
+ }
+
+header, footer {
+  position: sticky;
+  background-color: #1E293B;
+  color: whitesmoke;
+}
+
+header {
+  top: 0;
+}
+
+nav {
+  display: block;
+  padding: 0.5rem;
+ /* border-bottom: 2px solid #000; */
+  background-color: lightblue;
+  color: #000;
+}
+
+main {
+  flex-grow: 1;
+}
+
+footer { 
+  bottom: 0;
+}
+
+.list{
+    padding-left: 30px;
+}
+
+nav a{
+    float: left;
+    display: block;
+   /* color: #f2f2f2; */
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 17px;   
+
+}
+a:hover{
+    background-color: aqua;
+}
+
+/* || SMALL */
+@media screen and (min-width: 576px) {
+  body {
+  /*  background-color: green; */
+  /*  background-image: radial-gradient(whitesmoke, green)*/
+
+  }
+  .topnav {
+   display: none;
+  }
+}
+
+/* || MEDIUM */
+@media screen and (min-width: 768px) {
+  body {
+  /*  background-color: gold; */
+   /* background-image: radial-gradient(whitesmoke, gold) */
+  }
+}
+
+/* || LARGE */
+@media screen and (min-width: 992px) {
+  body {
+ /*   background-color: firebrick; */
+   /* background-image: radial-gradient(whitesmoke, firebrick) */
+  }
+}
+
+/* || XL  */
+@media screen and (min-width: 1200px) {
+  body {
+  /*  background-color: rebeccapurple; */
+  /*  background-image: radial-gradient(whitesmoke, rebeccapurple)*/
+  }
+}
+
+/* || MOBILE DEVICE LANDSCAPE  */
+@media screen and (max-height: 425px) and (min-aspect-ratio: 7/4) {
+  body {
+    background-color: dodgerblue; 
+    background-image: radial-gradient(whitesmoke, dodgerblue)
+  }
+
+  h1, h2 {
+    font-size: 1.5rem;
+  }
+
+ nav { display: none }
+}
+
