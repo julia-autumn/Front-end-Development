@@ -55,12 +55,12 @@ button:hover {
   margin-right: 10px;
   margin-top: 15px;
   font-size: 1.5rem;
- }
+}
 
 li {
   width: 100%;
   border-bottom: 2px;
- /* display: flex;*/
+  /* display: flex;*/
   /* justify-content: space-between; */
 }
 /*
