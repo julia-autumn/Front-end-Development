@@ -1,0 +1,97 @@
+* {
+  padding: 0;
+  margin: 0;
+  color: darkgreen;
+  font-family: cursive;
+}
+
+body {
+  background: url(background.jpg) no-repeat center center/cover;
+}
+
+.container {
+  border: 1px solid black;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  place-content: center;
+}
+
+.addForm {
+  width: 900px;
+  min-height: 100vh;
+  background: bisque;
+  box-shadow: 10px 10px 24px 0 black;
+}
+
+.addForm h1 {
+  font-size: 2.5rem;
+  margin-top: 1em;
+}
+
+.addForm button {
+  font-size: 1.5rem;
+  color: darkgreen;
+  margin: 5px 5px 5px 5px;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: orange;
+}
+
+/*.addForm */
+#inputTask {
+  outline: 0;
+  border: 0;
+  border-bottom: 3px solid darkgreen;
+  background-color: bisque;
+  font-size: 1.5rem;
+  font-family: cursive;
+}
+
+#allItems {
+  margin-left: 50px;
+  margin-right: 10px;
+  margin-top: 15px;
+  font-size: 1.5rem;
+ }
+
+li {
+  width: 100%;
+  border-bottom: 2px;
+ /* display: flex;*/
+  /* justify-content: space-between; */
+}
+/*
+.task button{
+    flex: 1;
+    font-size: 1.3rem;
+
+}
+
+
+button{
+     float:right;
+}
+*/
+
+label:checked {
+  text-decoration: line-through;
+}
+
+@media (max-width: 480px) {
+  .addForm h1 {
+    font-size: 2rem;
+  }
+  .addForm button {
+    font-size: 1.5rem;
+  }
+  .addForm input {
+    font-size: 1rem;
+  }
+  #allItems h2 {
+    margin-left: 25px;
+    font-size: 1.5rem;
+  }
+}

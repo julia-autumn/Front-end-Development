@@ -18,13 +18,11 @@ body {
 
 .nav_vertical {
     background-color: lightblue;
-  /*  font-style: italic; */
     font-size: 1rem;
     border: 2px solid darkblue;
     margin: 20px;
     padding: 20px;
     width: 10%; 
-   /* display: block; */
 }
 
 h1, h2 {
