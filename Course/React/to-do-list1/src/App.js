@@ -26,12 +26,12 @@ function App() {
   }, []);
 
   async function fetchTasks() {
-    setIsTasksLoading (true);
-    setTimeout(async() =>{
-    const tasks = await TaskService.getAll();
-    //   console.log(response.data);
-    setTasks(tasks);
-    setIsTasksLoading (false);
+    setIsTasksLoading(true);
+    setTimeout(async () => {
+      const tasks = await TaskService.getAll();
+      //   console.log(response.data);
+      setTasks(tasks);
+      setIsTasksLoading(false);
     }, 1000);
   }
 
@@ -99,15 +99,13 @@ function App() {
       </div>
 
       {isTasksLoading === true ? (
-        <Loader/>
-      ) : (
-           tasks.length !== 0 ? (
+        <Loader />
+      ) : tasks.length !== 0 ? (
         <TaskList done={doneTask} remove={removeTask} tasks={tasks} />
-        ) : (
-          <div style={{ textAlign: "center", color: "GrayText" }}>
-            Empty task list
-          </div>
-        )
+      ) : (
+        <div style={{ textAlign: "center", color: "GrayText" }}>
+          Empty task list
+        </div>
       )}
     </div>
   );
