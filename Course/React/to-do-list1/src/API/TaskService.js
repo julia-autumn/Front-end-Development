@@ -1,16 +1,13 @@
 import axios from "axios";
+import {useData} from 'react';
 
 export default class TaskService {
-    static async getAll() {
-        try{
+  static async getAll() {
+      //const response = await axios.get("https://jsonplaceholder.typicode.com/todos");
+      console.log("getall");
+      const response = useData("https://jsonplaceholder.typicode.com/todos")
+      console.log(response);
 
-            const response = await axios.get('https://jsonplaceholder.typicode.com/todos');
-        return response.data;
-
-        }  catch(e) {
-            console.log(e);
-        }
-
-
-       }
+    return response;
+  }
 }

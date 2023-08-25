@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
+import { useTasks } from "./hooks/useTasks";
+import { useFetching } from "./hooks/useFetching";
 //import Counter from "./components/Counter";
 import TaskItem from "./components/TaskItem";
 import "./styles/App.css";
@@ -9,31 +11,33 @@ import InputForm from "./components/InputForm";
 import MySelect from "./components/UI/select/MySelect";
 import TaskService from "./API/TaskService";
 import Loader from "./components/UI/Loader/Loader";
+import MyInput from "./components/UI/input/MyInput";
+import TaskFilter from "./components/TaskFilter";
+import MyModal from "./components/UI/MyModal/MyModal";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [selectedSort, setSelectedSort] = useState("");
+  //const [selectedSort, setSelectedSort] = useState("");
+  //  const [searchQuery, setSearchQuery] = useState("");
   // const [error, setError] = useState(null);
   // const [isLoaded, setIsLoaded] = useState(false);
-  const [isTasksLoading, setIsTasksLoading] = useState(false);
+  // const [isTasksLoading, setIsTasksLoading] = useState(false);
+  const [filter, setFilter] = useState({ sort: "", query: "" });
+  const [modal, setModal] = useState(false);
+  const sortedAndSearchedTasks = useTasks(tasks, filter.sort, filter.query);
+  const [fetchTasks, isTasksLoading, taskError] = useFetching(async () => {
+    const tasks = await TaskService.getAll();
+    setTasks(tasks);
+  });
 
   const createTask = (newTask) => {
     setTasks([...tasks, newTask]);
+    setModal(false);
   };
 
   useEffect(() => {
     fetchTasks();
   }, []);
-
-  async function fetchTasks() {
-    setIsTasksLoading(true);
-    setTimeout(async () => {
-      const tasks = await TaskService.getAll();
-      //   console.log(response.data);
-      setTasks(tasks);
-      setIsTasksLoading(false);
-    }, 1000);
-  }
 
   const removeTask = (task) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
@@ -52,13 +56,6 @@ function App() {
     });
 
     setTasks(newDoneTask);
-  };
-
-  const sortTasks = (sort) => {
-    setSelectedSort(sort);
-    setTasks(
-      [...tasks].sort((a, b) => String(a[sort]).localeCompare(String(b[sort])))
-    );
   };
 
   function loadList() {
@@ -82,30 +79,34 @@ function App() {
 
   return (
     <div className="App">
-      <InputForm create={createTask} removeAll={removeAll} load={loadList} />
+   {/*   <MyButton style={{ marginTop: 30 }} onClick={() => setModal(true)}>
+        Create Task
+      </MyButton>
+     <MyModal visible={modal} setVisible={setModal} */}
+        <InputForm create={createTask} removeAll={removeAll} load={loadList} />
+     {/* </MyModal> */}
+
       <hr style={{ margin: "10px" }} />
       <MyButton onClick={fetchTasks}>Load from Server</MyButton>
+      <MyButton onClick={fetchTasks}>Upload to Server</MyButton>
       <hr style={{ margin: "10px" }} />
-      <div>
-        <MySelect
-          value={selectedSort}
-          onChange={sortTasks}
-          defaultValue="Sorting"
-          options={[
-            { value: "title", name: "by Title" },
-            { value: "completed", name: "by Status" },
-          ]}
-        />
-      </div>
+      <TaskFilter filter={filter} setFilter={setFilter} />
 
+      {taskError &&
+         <h1>Error ${taskError}</h1>
+         }
       {isTasksLoading === true ? (
-        <Loader />
-      ) : tasks.length !== 0 ? (
-        <TaskList done={doneTask} remove={removeTask} tasks={tasks} />
-      ) : (
-        <div style={{ textAlign: "center", color: "GrayText" }}>
-          Empty task list
+        <div
+          style={{ display: "flex", justifyContent: "center", marginTop: 50 }}
+        >
+          <Loader />
         </div>
+      ) : (
+        <TaskList
+          done={doneTask}
+          remove={removeTask}
+          tasks={sortedAndSearchedTasks}
+        />
       )}
     </div>
   );

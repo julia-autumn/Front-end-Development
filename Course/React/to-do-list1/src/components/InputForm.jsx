@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, {useRef, useState, useEffect } from "react";
 import MyButton from "./UI/button/MyButton";
 import MyInput from "./UI/input/MyInput";
 
-const InputForm = ({ create, removeAll, loadList }) => {
+const InputForm = ({ create, removeAll }) => {
   //const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState([{ title: "", completed: false }]);
 
@@ -24,6 +24,11 @@ const InputForm = ({ create, removeAll, loadList }) => {
     // displayList([])
     removeAll();
   };
+
+  
+
+
+
   /*
       const loadFromServer =(e) => {
         e.preventDefault();
@@ -54,6 +59,7 @@ const InputForm = ({ create, removeAll, loadList }) => {
     <form>
       <h1 style={{ textAlign: "center" }}>To-Do List</h1>
       <MyInput
+        ref={input => input && input.focus()}
         value={task.title}
         onChange={(e) => setTask({ ...task, title: e.target.value })}
         type="text"
@@ -61,6 +67,7 @@ const InputForm = ({ create, removeAll, loadList }) => {
       />
       <MyButton onClick={addNewTask}>Add Task</MyButton>
       <MyButton onClick={clearList}>Clear List</MyButton>
+     
       {/*  <MyButton>Load from server</MyButton> */}
     </form>
   );
