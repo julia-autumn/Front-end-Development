@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, createContext, useContext} from "react";
 import { useTasks } from "./hooks/useTasks";
 import { useFetching } from "./hooks/useFetching";
 //import Counter from "./components/Counter";
@@ -14,6 +14,10 @@ import Loader from "./components/UI/Loader/Loader";
 import MyInput from "./components/UI/input/MyInput";
 import TaskFilter from "./components/TaskFilter";
 import MyModal from "./components/UI/MyModal/MyModal";
+import setDarkMode from "./components/setDarkMode";
+
+
+const ThemeContext = createContext(null);
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -29,6 +33,19 @@ function App() {
     const tasks = await TaskService.getAll();
     setTasks(tasks);
   });
+  
+  const [checked, setChecked] = useState("false");
+  
+  const [theme, setTheme] = useState("light");
+
+
+
+  const changeCheckbox = (e) => {
+    setChecked(!checked);
+    setTheme(setChecked);
+  };
+
+
 
   const createTask = (newTask) => {
     setTasks([...tasks, newTask]);
@@ -78,6 +95,8 @@ function App() {
   }
 
   return (
+
+    <ThemeContext.Provider value={theme}>
     <div className="App">
    {/*   <MyButton style={{ marginTop: 30 }} onClick={() => setModal(true)}>
         Create Task
@@ -89,8 +108,10 @@ function App() {
       <hr style={{ margin: "10px" }} />
       <MyButton onClick={fetchTasks}>Load from Server</MyButton>
       <MyButton onClick={fetchTasks}>Upload to Server</MyButton>
+      <input type="checkbox" checked={theme === 'dark'} onChange={changeCheckbox} /> <span>Dark Mode</span>
       <hr style={{ margin: "10px" }} />
       <TaskFilter filter={filter} setFilter={setFilter} />
+    
 
       {taskError &&
          <h1>Error ${taskError}</h1>
@@ -109,6 +130,8 @@ function App() {
         />
       )}
     </div>
+    </ThemeContext.Provider>
   );
 }
-export default App;
+export default App; 
+

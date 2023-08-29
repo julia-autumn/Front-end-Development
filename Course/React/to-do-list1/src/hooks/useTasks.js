@@ -20,7 +20,7 @@ export const useTasks = (tasks, sort, query) => {
 
     const sortedAndSearchedTasks = useMemo(() => {
         return sortedTasks.filter(task => task.title.toLowerCase().includes(query.toLowerCase()));
- }, [query, sortedTasks]) 
+ }, [query, sortedTasks])
 
  return sortedAndSearchedTasks;
 }
